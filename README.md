@@ -1,6 +1,6 @@
 # SPARK
 
-## Stability-optimised Program Architecture Reconstruction Framework
+## Stability-optimised Program Architecture Reconstruction frameworK
 
 SPARK is a graph-based transcriptomic framework for identifying stable, coordinated pathway modules from pathway activity landscapes using multimodality filtering, network-based organisation, Leiden community detection, and stability optimisation.
 
