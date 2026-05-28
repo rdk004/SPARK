@@ -1,676 +1,582 @@
-###### \# SPARK
+\# SPARK
 
-###### 
 
-###### \## Stability-optimised Program Architecture Reconstruction Framework
 
-###### 
+\## Stability-optimised Program Architecture Reconstruction Framework
 
-###### SPARK is a graph-based transcriptomic framework for identifying stable, coordinated pathway modules from pathway activity landscapes using multimodality filtering, network-based organisation, Leiden community detection, and stability optimisation.
 
-###### 
 
-###### The framework reconstructs higher-order transcriptomic programs from GSVA-derived pathway activity matrices and is designed for robust pathway-level systems biology analyses in cancer and complex biological systems.
+SPARK is a graph-based transcriptomic framework for identifying stable, coordinated pathway modules from pathway activity landscapes using multimodality filtering, network-based organisation, Leiden community detection, and stability optimisation.
 
-###### 
 
-###### \---
 
-###### 
+The framework reconstructs higher-order transcriptomic programs from GSVA-derived pathway activity matrices and is designed for robust pathway-level systems biology analyses in cancer and complex biological systems.
 
-###### \# Workflow Overview
 
-###### 
 
-###### !\[SPARK Workflow](docs/workflow\_schematic.png)
+\---
 
-###### 
 
-###### \---
 
-###### 
+\# Workflow Overview
 
-###### \# Overview
 
-###### 
 
-###### SPARK combines:
+!\[SPARK Workflow](docs/workflow\_schematic.png)
 
-###### 
 
-###### \- Gaussian mixture model (GMM)-based multimodal pathway filtering
 
-###### \- Bayesian Information Criterion (ΔBIC)-driven pathway selection
+\---
 
-###### \- Signed pathway co-activity network construction
 
-###### \- WGCNA-inspired soft-thresholding
 
-###### \- Leiden graph community detection
+\# Overview
 
-###### \- Bootstrap stability optimisation
 
-###### \- Principal component-derived module eigengenes
 
-###### 
+SPARK combines:
 
-###### to identify stable transcriptomic pathway modules representing coordinated biological programs.
 
-###### 
 
-###### \---
+\* Gaussian mixture model (GMM)-based multimodal pathway filtering
 
-###### 
+\* Bayesian Information Criterion (ΔBIC)-driven pathway selection
 
-###### \# Features
+\* Signed pathway co-activity network construction
 
-###### 
+\* WGCNA-inspired soft-thresholding
 
-###### \- Multimodal pathway filtering using Gaussian mixture models
+\* Leiden graph community detection
 
-###### \- ΔBIC-based identification of biologically informative pathways
+\* Bootstrap stability optimisation
 
-###### \- Graph-based pathway organisation
+\* Principal component-derived module eigengenes
 
-###### \- Resolution-wise Leiden community detection
 
-###### \- Stability-aware module optimisation
 
-###### \- Bootstrap-adjusted Rand Index (ARI) evaluation
+to identify stable transcriptomic pathway modules representing coordinated biological programs.
 
-###### \- Principal component-based module summarisation
 
-###### \- Publication-ready module-level outputs and diagnostics
 
-###### 
+\---
 
-###### \---
 
-###### 
 
-###### \# Repository Structure
+\# Features
 
-###### 
 
-###### ```text
 
-###### SPARK\_repository/
+\* Multimodal pathway filtering using Gaussian mixture models
 
-###### │
+\* ΔBIC-based identification of biologically informative pathways
 
-###### ├── README.md
+\* Graph-based pathway organisation
 
-###### ├── LICENSE
+\* Resolution-wise Leiden community detection
 
-###### ├── .gitignore
+\* Stability-aware module optimisation
 
-###### │
+\* Bootstrap-adjusted Rand Index (ARI) evaluation
 
-###### ├── scripts/
+\* Principal component-based module summarisation
 
-###### │   ├── 01\_gmm\_multimodal\_filtering.R
+\* Publication-ready module-level outputs and diagnostics
 
-###### │   ├── 02\_graph\_module\_discovery.R
 
-###### │   └── run\_spark\_pipeline.R
 
-###### │
+\---
 
-###### ├── example\_data/
 
-###### │   └── GSVA\_scores.csv
 
-###### │
+\# Repository Structure
 
-###### ├── example\_output/
 
-###### │   ├── gmm\_filtering/
 
-###### │   └── module\_discovery/
+```text
 
-###### │
+SPARK\_repository/
 
-###### ├── docs/
+│
 
-###### │   ├── workflow\_schematic.png
+├── README.md
 
-###### │   ├── mathematical\_overview.pdf
+├── LICENSE
 
-###### │   ├── methodology.md
+├── .gitignore
 
-###### │   └── parameter\_descriptions.md
+│
 
-###### │
+├── scripts/
 
-###### └── environment/
+│   ├── 01\_gmm\_multimodal\_filtering.R
 
-###### &#x20;   ├── required\_packages.R
+│   ├── 02\_graph\_module\_discovery.R
 
-###### &#x20;   └── sessionInfo.txt
+│   └── run\_spark\_pipeline.R
 
-###### ```
+│
 
-###### 
+├── example\_data/
 
-###### \---
+│   └── GSVA\_scores.csv
 
-###### 
+│
 
-###### \# Installation
+├── example\_output/
 
-###### 
+│   ├── gmm\_filtering/
 
-###### \## 1. Clone Repository
+│   └── module\_discovery/
 
-###### 
+│
 
-###### ```bash
+├── docs/
 
-###### git clone https://github.com/YOUR\_USERNAME/SPARK.git
+│   ├── workflow\_schematic.png
 
-###### cd SPARK
+│   ├── mathematical\_overview.pdf
 
-###### ```
+│   ├── methodology.md
 
-###### 
+│   └── parameter\_descriptions.md
 
-###### \---
+│
 
-###### 
+└── environment/
 
-###### \## 2. Install Dependencies
+&#x20;   ├── required\_packages.R
 
-###### 
+&#x20;   └── sessionInfo.txt
 
-###### Open R and run:
+```
 
-###### 
 
-###### ```r
 
-###### source("environment/required\_packages.R")
+\---
 
-###### ```
 
-###### 
 
-###### \---
+\# Installation
 
-###### 
 
-###### \# Input Data
 
-###### 
+\## Clone Repository
 
-###### SPARK requires a GSVA pathway activity matrix formatted as:
 
-###### 
 
-###### | Pathway | Sample1 | Sample2 | Sample3 |
+```bash
 
-###### |---|---|---|---|
+git clone https://github.com/YOUR\_USERNAME/SPARK.git
 
-###### | HALLMARK\_MYC\_TARGETS | 0.42 | -0.15 | 0.91 |
+cd SPARK
 
-###### | HALLMARK\_E2F\_TARGETS | -0.33 | 0.71 | -0.08 |
+```
 
-###### 
 
-###### \- Rows represent pathways
 
-###### \- Columns represent samples
+\---
 
-###### \- Values represent GSVA enrichment scores
 
-###### 
 
-###### Place the matrix inside:
+\# Install Dependencies
 
-###### 
 
-###### ```text
 
-###### example\_data/GSVA\_scores.csv
+Open R and run:
 
-###### ```
 
-###### 
 
-###### \---
+```r
 
-###### 
+source("environment/required\_packages.R")
 
-###### \# Running SPARK
+```
 
-###### 
 
-###### Run the complete pipeline using:
 
-###### 
+\---
 
-###### ```r
 
-###### source("scripts/run\_spark\_pipeline.R")
 
-###### ```
+\# Input Data
 
-###### 
 
-###### The workflow sequentially performs:
 
-###### 
+SPARK requires a GSVA pathway activity matrix where:
 
-###### 1\. Multimodal pathway filtering
 
-###### 2\. Correlation network construction
 
-###### 3\. Leiden-based module discovery
+\* rows represent pathways
 
-###### 4\. Stability optimisation
+\* columns represent samples
 
-###### 5\. Module eigengene generation
+\* values represent GSVA enrichment scores
 
-###### 
 
-###### \---
 
-###### 
+Place the matrix inside:
 
-###### \# Workflow Components
 
-###### 
 
-###### \## 1. Multimodal Pathway Filtering
+```text
 
-###### 
+example\_data/GSVA\_scores.csv
 
-###### Pathways are evaluated using Gaussian mixture models (GMMs).
+```
 
-###### 
 
-###### Model selection is performed using the Bayesian Information Criterion (BIC):
 
-###### 
+\---
 
-###### ```math
 
-###### \\Delta BIC = BIC\_{best} - BIC\_{G=1}
 
-###### ```
+\# Running SPARK
 
-###### 
 
-###### Pathways with:
 
-###### 
+Run the complete pipeline using:
 
-###### ```math
 
-###### \\Delta BIC > 10
 
-###### ```
+```r
 
-###### 
+source("scripts/run\_spark\_pipeline.R")
 
-###### are retained for downstream graph analysis.
+```
 
-###### 
 
-###### \---
 
-###### 
+The workflow sequentially performs:
 
-###### \## 2. Graph-based Module Discovery
 
-###### 
 
-###### A signed pathway co-activity network is constructed using pathway-pathway correlations across samples.
+1\. Multimodal pathway filtering
 
-###### 
+2\. Correlation network construction
 
-###### Soft-thresholding is performed using WGCNA-inspired adjacency transformation:
+3\. Leiden-based module discovery
 
-###### 
+4\. Stability optimisation
 
-###### ```math
+5\. Module eigengene generation
 
-###### A\_{ij} = \\left(\\frac{1 + cor(i,j)}{2}\\right)^\\beta
 
-###### ```
 
-###### 
+\---
 
-###### Leiden community detection is then performed across multiple resolutions.
 
-###### 
 
-###### \---
+\# Workflow Components
 
-###### 
 
-###### \## 3. Stability Optimisation
 
-###### 
+\## 1. Multimodal Pathway Filtering
 
-###### For each resolution:
 
-###### 
 
-###### \- bootstrap pathway resampling is performed
+Pathways are evaluated using Gaussian mixture models (GMMs).
 
-###### \- bootstrap sample resampling is performed
 
-###### \- Adjusted Rand Index (ARI) stability is computed
 
-###### 
+Model selection is performed using the Bayesian Information Criterion (BIC):
 
-###### Resolution selection is based on a composite score integrating:
 
-###### 
 
-###### \- module coherence (MAPC)
+```math
 
-###### \- graph stability
+\\Delta BIC = BIC\_{best} - BIC\_{G=1}
 
-###### 
+```
 
-###### \---
 
-###### 
 
-###### \## 4. Module Eigengene Generation
+Pathways with:
 
-###### 
 
-###### For each identified module:
 
-###### 
+```math
 
-###### \- principal component analysis (PCA) is performed
+\\Delta BIC > 10
 
-###### \- PC1 is used as the module eigengene
+```
 
-###### \- pathway PC1 loadings are exported
 
-###### 
 
-###### These eigengenes represent coordinated transcriptomic pathway programs.
+are retained for downstream graph analysis.
 
-###### 
 
-###### \---
 
-###### 
+\---
 
-###### \# Outputs
 
-###### 
 
-###### \## GMM Filtering Outputs
+\## 2. Graph-based Module Discovery
 
-###### 
 
-###### Located in:
 
-###### 
+A signed pathway co-activity network is constructed using pathway-pathway correlations across samples.
 
-###### ```text
 
-###### example\_output/gmm\_filtering/
 
-###### ```
+Soft-thresholding is performed using WGCNA-inspired adjacency transformation:
 
-###### 
 
-###### Includes:
 
-###### 
+```math
 
-###### \- ΔBIC statistics
+A\_{ij} = \\left(\\frac{1 + cor(i,j)}{2}\\right)^\\beta
 
-###### \- retained pathway lists
+```
 
-###### \- filtered GSVA matrices
 
-###### \- multimodality diagnostics
 
-###### \- UMAP projections
+Leiden community detection is then performed across multiple resolutions.
 
-###### 
 
-###### \---
 
-###### 
+\---
 
-###### \## Module Discovery Outputs
 
-###### 
 
-###### Located in:
+\## 3. Stability Optimisation
 
-###### 
 
-###### ```text
 
-###### example\_output/module\_discovery/
+For each resolution:
 
-###### ```
 
-###### 
 
-###### Includes:
+\* bootstrap pathway resampling is performed
 
-###### 
+\* bootstrap sample resampling is performed
 
-###### \- module assignments
+\* Adjusted Rand Index (ARI) stability is computed
 
-###### \- module eigengene matrices
 
-###### \- PC1 loading matrices
 
-###### \- resolution optimisation metrics
+Resolution selection is based on a composite score integrating:
 
-###### \- module correlation heatmaps
 
-###### 
 
-###### \---
+\* module coherence (MAPC)
 
-###### 
+\* graph stability
 
-###### \# Example Output Files
 
-###### 
 
-###### \## GMM Filtering
+\---
 
-###### 
 
-###### ```text
 
-###### bic\_results.csv
+\## 4. Module Eigengene Generation
 
-###### retained\_pathways.csv
 
-###### filtered\_gsva\_scores.csv
 
-###### bic\_distribution.svg
+For each identified module:
 
-###### patient\_umap.svg
 
-###### ```
 
-###### 
+\* principal component analysis (PCA) is performed
 
-###### \---
+\* PC1 is used as the module eigengene
 
-###### 
+\* pathway PC1 loadings are exported
 
-###### \## Module Discovery
 
-###### 
 
-###### ```text
+These eigengenes represent coordinated transcriptomic pathway programs.
 
-###### module\_assignments.csv
 
-###### module\_scores.csv
 
-###### module\_pc1\_loadings.csv
+\---
 
-###### resolution\_metrics.csv
 
-###### resolution\_optimization.svg
 
-###### module\_correlation\_heatmap.svg
+\# Outputs
 
-###### ```
 
-###### 
 
-###### \---
+\## GMM Filtering Outputs
 
-###### 
 
-###### \# Documentation
 
-###### 
+Located in:
 
-###### Additional methodological details are available in:
 
-###### 
 
-###### ```text
+```text
 
-###### docs/
+example\_output/gmm\_filtering/
 
-###### ```
+```
 
-###### 
 
-###### Including:
 
-###### 
+Includes:
 
-###### \- workflow schematic
 
-###### \- mathematical overview
 
-###### \- parameter descriptions
+\* ΔBIC statistics
 
-###### \- methodological summaries
+\* retained pathway lists
 
-###### 
+\* filtered GSVA matrices
 
-###### \---
+\* multimodality diagnostic plots
 
-###### 
 
-###### \# Applications
 
-###### 
+\---
 
-###### SPARK is suitable for:
 
-###### 
 
-###### \- transcriptomic module discovery
+\## Module Discovery Outputs
 
-###### \- pathway-level systems biology
 
-###### \- cancer transcriptomics
 
-###### \- pathway architecture reconstruction
+Located in:
 
-###### \- tumour subtype characterisation
 
-###### \- multimodal pathway organisation analyses
 
-###### 
+```text
 
-###### \---
+example\_output/module\_discovery/
 
-###### 
+```
 
-###### \# Reproducibility
 
-###### 
 
-###### The repository includes:
+Includes:
 
-###### 
 
-###### \- dependency installation scripts
 
-###### \- session information
+\* module assignments
 
-###### \- example input data
+\* module eigengene matrices
 
-###### \- example output files
+\* PC1 loading matrices
 
-###### 
+\* resolution optimisation metrics
 
-###### for reproducible execution.
+\* module correlation heatmaps
 
-###### 
 
-###### Environment information is provided in:
 
-###### 
+\---
 
-###### ```text
 
-###### environment/sessionInfo.txt
 
-###### ```
+\# Documentation
 
-###### 
 
-###### \---
 
-###### 
+Additional methodological details are available in:
 
-###### \# Citation
 
-###### 
 
-###### If you use SPARK in your work, please cite the associated manuscript.
+```text
 
-###### 
+docs/
 
-###### ```text
+```
 
-###### Rishabh Kulkarni et al.
 
-###### SPARK: Stability-optimised Program Architecture Reconstruction Framework
 
-###### (Manuscript in preparation)
+Including:
 
-###### ```
 
-###### 
 
-###### \---
+\* workflow schematic
 
-###### 
+\* mathematical overview
 
-###### \# Contact
+\* parameter descriptions
 
-###### 
+\* methodological summaries
 
-###### Rishabh Kulkarni  
 
-###### Indian Institute of Science Education and Research (IISER) Pune
 
-###### 
+\---
 
-###### \---
 
-###### 
 
-###### \# License
+\# Reproducibility
 
-###### 
 
-###### This project is released under the MIT License.
+
+The repository includes:
+
+
+
+\* dependency installation scripts
+
+\* session information
+
+\* example input data
+
+\* example output files
+
+
+
+for reproducible execution.
+
+
+
+Environment information is provided in:
+
+
+
+```text
+
+environment/sessionInfo.txt
+
+```
+
+
+
+\---
+
+
+
+\# Citation
+
+
+
+If you use SPARK in your work, please cite the associated manuscript.
+
+
+
+Rishabh Kulkarni
+
+SPARK: Stability-optimised Program Architecture Reconstruction Framework
+
+(Manuscript in preparation)
+
+
+
+\---
+
+
+
+\# Contact
+
+
+
+Rishabh Kulkarni
+
+Indian Institute of Science Education and Research (IISER) Pune
+
+
+
+\---
+
+
+
+\# License
+
+
+
+This project is released under the MIT License.
+
+
 
