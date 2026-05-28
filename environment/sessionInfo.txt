@@ -1,0 +1,23 @@
+R version 4.4.0 (2024-04-24 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 26200)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_India.utf8  LC_CTYPE=English_India.utf8    LC_MONETARY=English_India.utf8
+[4] LC_NUMERIC=C                   LC_TIME=English_India.utf8    
+
+time zone: Asia/Calcutta
+tzcode source: internal
+
+attached base packages:
+[1] grid      stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] circlize_0.4.16       ComplexHeatmap_2.20.0 igraph_2.2.2          WGCNA_1.74            fastcluster_1.3.0    
+ [6] dynamicTreeCut_1.63-1 umap_0.2.10.0         diptest_0.77-2        BiocParallel_1.40.2   mclust_6.1.2         
+[11] lubridate_1.9.5       forcats_1.0.1         stringr_1.6.0         dplyr_1.1.4           purrr_1.2.1          
+[16] readr_2.2.0           tidyr_1.3.2           tibble_3.2.1          ggplot2_4.0.2         tidyverse_2.0.0      
+

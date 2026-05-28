@@ -1,0 +1,10 @@
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+*.rds
+*.RDS
+*.pdf
+*.png
+*.svg
+results/

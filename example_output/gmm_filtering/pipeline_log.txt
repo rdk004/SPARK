@@ -1,0 +1,11 @@
+[2026-05-28 20:42:19] SPARK multimodal pathway filtering started.
+[2026-05-28 20:42:35] SPARK multimodal pathway filtering started.
+[2026-05-28 20:42:35] Loaded GSVA matrix: 999 pathways x 50 samples
+[2026-05-28 20:42:35] Running variance quality control.
+[2026-05-28 20:42:35] Running Gaussian mixture modelling.
+[2026-05-28 20:43:12] Retained 54 multimodal pathways.
+[2026-05-28 20:43:12] Running dip test quality control.
+[2026-05-28 20:43:15] Running distribution diagnostics.
+[2026-05-28 20:43:16] Running UMAP projection.
+[2026-05-28 20:43:16] Exporting filtered GSVA matrix.
+[2026-05-28 20:43:16] SPARK multimodal pathway filtering completed.
