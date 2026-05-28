@@ -82,7 +82,7 @@ SPARK_repository/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/SPARK.git
+git clone https://github.com/rdk004/SPARK.git
 cd SPARK
 ```
 
