@@ -280,8 +280,9 @@ SPARK: Stability-optimised Program Architecture Reconstruction Framework
 
 # Contact
 
-Rishabh Kulkarni
-Indian Institute of Science Education and Research (IISER) Pune
+Rishabh Kulkarni\n
+Indian Institute of Science Education and Research (IISER) Pune\n
+rdkulkarni04@gmail.com
 
 ---
 
