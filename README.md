@@ -272,8 +272,8 @@ environment/sessionInfo.txt
 
 If you use SPARK in your work, please cite the associated manuscript.
 
-Rishabh Kulkarni
-SPARK: Stability-optimised Program Architecture Reconstruction Framework
+Rishabh Kulkarni, Rahul Kumar
+SPARK: A Systems-level Computational Framework for Reconstructing Transcriptomic State Organisation in Lung Adenocarcinoma
 (Manuscript in preparation)
 
 ---
@@ -283,6 +283,7 @@ SPARK: Stability-optimised Program Architecture Reconstruction Framework
 Rishabh Kulkarni 
 Indian Institute of Science Education and Research (IISER) Pune
 rdkulkarni04@gmail.com
+
 
 ---
 
